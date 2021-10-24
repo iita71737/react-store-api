@@ -10,19 +10,18 @@ server.use(middleWares);
 
 const getUsersDb = () => {
     return JSON.parse(
-        fs.readFileSync(path.join(__dirname, 'users.json'), 'UTF-8')
+        fs.readFileSync(path.join(__dirname, 'users.json'), 'UTF-8')//加入絕對路徑
     );
 };
 
 const isAuthenticated = ({ email, password }) => {
     return (
-        getUsersDb().users.findIndex(
-            user => user.email === email && user.password === password
-        ) !== -1
+        getUsersDb().users.findIndex(user => user.email === email && user.password === password) !== -1
+        //findIndex方法回傳數字 > !== -1 表示有取到值  return true
     );
 };
 
-const SECRET = '12321JKLSJKLSDFJK23423432';
+const SECRET = '12321JKLSJKLSDFJK23423432'; //暫時隨意定義
 const expiresIn = '1h';
 const createToken = payload => {
     return jwt.sign(payload, SECRET, { expiresIn });
