@@ -1,4 +1,5 @@
 const path = require('path');
+const port = process.env.PORT || 3003;
 const fs = require('fs');
 const jsonServer = require('json-server');
 const jwt = require('jsonwebtoken');
@@ -130,6 +131,6 @@ const verifyToken = token => {
 };
 
 server.use(router);
-server.listen(process.env.PORT || 3003, () => {
+server.listen(port, () => {
     console.log('JSON Server is running');
 });
